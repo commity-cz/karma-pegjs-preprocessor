@@ -1,0 +1,20 @@
+{
+  "name": "karma-pegjs-preprocessor",
+  "version": "1.0.0",
+  "description": "A Karma plugin. Compile PEG.js grammar on the fly.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/karma-runner/karma-coffee-preprocessor.git"
+  },
+  "keywords": [
+    "karma-plugin",
+    "karma-preprocessor",
+    "pegjs"
+  ],
+  "author": "Leos Prikryl <leos.prikryl@gmail.com>",
+  "dependencies": {
+    "pegjs": "^0.8.0"
+  },
+  "license": "MIT"
+}
