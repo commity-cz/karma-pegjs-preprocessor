@@ -1,5 +1,12 @@
 var peg = require("pegjs");
 
+var getFilename = function(path) {
+  var parts = path.split('/');
+  var name = parts[parts.length - 1].split('.');
+
+  return name.slice(0, name.length - 1).join('.');
+}
+
 var createPegjsPreprocessor = function (config, logger, helper) {
   var log = logger.create('preprocessor.pegjs');
 
@@ -21,9 +28,16 @@ var createPegjsPreprocessor = function (config, logger, helper) {
       return done(e, null);
     }
 
+    var fileName = getFilename(file.path);
+
     var output;
     if (config.angular) {
-      output = 'angular.module(\'' + config.angular.module + '\', []).factory(\'' + config.angular.factory + '\', function () { return ' + parser + '});';
+      if(config.angular.module && config.angular.factory){
+        output = 'angular.module(\'' + config.angular.module + '\', []).factory(\'' + config.angular.factory + '\', function () { return ' + parser + '});';
+      }
+      else {
+        output = 'angular.module(\'' + config.angular.modulePrefix + '.' + fileName + '\', []).factory(\'' + fileName + '\', function () { return ' + parser + '});';
+      }
     } else {
       output = (typeof config.exportVar === 'string' ? config.exportVar : 'module.exports') + ' = ' + parser + ';';
     }

@@ -1,6 +1,6 @@
 {
   "name": "karma-pegjs-preprocessor",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Karma plugin. Compile PEG.js grammar on the fly.",
   "main": "index.js",
   "repository": {
